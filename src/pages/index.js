@@ -1,1 +1,4 @@
-export { default } from './DashboardPage';
+export * from './HomePage';
+export * from './LoginPage';
+export * from './RegisterPage';
+export * from './ContactsPage';

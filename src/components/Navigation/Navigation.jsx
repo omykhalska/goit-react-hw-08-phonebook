@@ -1,14 +1,19 @@
-import { Nav, StyledNavLink } from './Navigation.styled';
+import Logo from 'images/logo.png';
+import { Nav, StyledNavLink, Flexbox } from './Navigation.styled';
 
-const Navigation = () => {
+export const Navigation = () => {
   return (
     <Nav>
-      <StyledNavLink to="/">Dashboard</StyledNavLink>
-      <StyledNavLink to="/contacts">Contacts</StyledNavLink>
-      <StyledNavLink to="/register">Register</StyledNavLink>
-      <StyledNavLink to="/login">Log in</StyledNavLink>
+      <Flexbox>
+        <StyledNavLink to="/">
+          <img src={Logo} alt="Phonebook" width="60px" />
+        </StyledNavLink>
+        <StyledNavLink to="/contacts">Contacts</StyledNavLink>
+      </Flexbox>
+      <Flexbox>
+        <StyledNavLink to="/register">Register</StyledNavLink>
+        <StyledNavLink to="/login">Sign In</StyledNavLink>
+      </Flexbox>
     </Nav>
   );
 };
-
-export default Navigation;

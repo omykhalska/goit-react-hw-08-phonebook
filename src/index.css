@@ -4,8 +4,21 @@
   box-sizing: border-box;
 }
 
-body {
+ul {
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
   margin: 0;
+}
+
+body {
   min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
