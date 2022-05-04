@@ -1,3 +1,5 @@
+import { AuthForm } from 'components/AuthForm';
+
 export const LoginPage = () => {
   return (
     <>
@@ -5,11 +7,7 @@ export const LoginPage = () => {
         Accessing this application requires a login, please enter your
         credentials below!
       </p>
-      <form name="loginForm" autoComplete="off">
-        <input type="email" name="email" placeholder="Email" />
-        <input type="password" name="password" placeholder="Enter password" />
-        <button type="button">Sign In</button>
-      </form>
+      <AuthForm type="loginForm" />
     </>
   );
 };
