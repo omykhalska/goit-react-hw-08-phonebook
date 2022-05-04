@@ -23,10 +23,6 @@ export function stringAvatar(name) {
     sx: {
       bgcolor: stringToColor(name),
     },
-    children: `${name
-      .split(' ')
-      .map(el => el[0])
-      .join('')
-      .slice(0, 2)}`,
+    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
   };
 }

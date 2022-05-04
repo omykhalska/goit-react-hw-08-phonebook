@@ -21,7 +21,7 @@ const schema = yup
       .required('❌ The field cannot be empty!')
       .matches(
         /^(?=.*[0-9])(?=.*[A-Z]).{6,32}$/,
-        '❌ The password must be at least 6 characters long with one uppercase'
+        '❌ The password must be at least 6 characters long with one digital and one uppercase'
       ),
   })
   .required();
@@ -30,7 +30,7 @@ export const AuthForm = ({ type }) => {
   const {
     register,
     reset,
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit,
   } = useForm({
     resolver: yupResolver(schema),
@@ -93,7 +93,7 @@ export const AuthForm = ({ type }) => {
       {type === 'registerForm' ? <NameInput /> : null}
       <EmailInput />
       <PasswordInput />
-      <button type="submit" disabled={!isValid}>
+      <button type="submit">
         {type === 'registerForm' ? 'Register' : 'Sign In'}
       </button>
     </form>

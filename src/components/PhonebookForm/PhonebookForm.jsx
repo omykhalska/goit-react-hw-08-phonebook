@@ -42,6 +42,10 @@ function PhonebookForm() {
                 message:
                   "❌ Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan",
               },
+              minLength: {
+                value: 2,
+                message: '❌ Name must contain 2 letters minimum',
+              },
             })}
           />
         </Label>

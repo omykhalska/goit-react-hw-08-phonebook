@@ -15,10 +15,19 @@ function Contact({ name, number, id }) {
     toast.success('Selected contact deleted');
   };
 
+  const verifyName = name => {
+    if (name.split(' ').length < 2) {
+      return `${name} ${name.split('').slice(1, 2).join()}`;
+    }
+    return name;
+  };
+
+  let verifiedName = verifyName(name);
+
   return (
     <ContactItem>
       <ContactAvatarBox>
-        <Avatar {...stringAvatar(`${name}`)} />
+        <Avatar {...stringAvatar(`${verifiedName}`)} />
         <ContactText>
           <b>{name}:</b> {number}
         </ContactText>
