@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
-import { useDeleteContactMutation } from 'redux/contactsSlice';
+import { useDeleteContactMutation } from 'redux/contacts/contacts-slice';
 import Button from '../Button';
 import Avatar from '@mui/material/Avatar';
 import { stringAvatar } from 'utils/stringAvatar';

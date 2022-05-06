@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import {
   useAddContactMutation,
   useGetContactsQuery,
-} from 'redux/contactsSlice';
+} from 'redux/contacts/contacts-slice';
 import Button from '../Button';
 import { FormWrapper, Label, Input, ErrorText } from './PhonebookForm.styled';
 

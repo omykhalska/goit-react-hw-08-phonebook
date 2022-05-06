@@ -1,10 +1,18 @@
-import { AuthForm } from 'components/AuthForm';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
+import { RegisterForm } from 'components/RegisterForm';
 
 export const RegisterPage = () => {
+  const dispatch = useDispatch();
+
+  const onSubmit = data => {
+    dispatch(authOperations.register(data));
+  };
+
   return (
     <>
       <p>Don't have an account? Register one!</p>
-      <AuthForm type="registerForm" />
+      <RegisterForm onSubmit={onSubmit} />
     </>
   );
 };

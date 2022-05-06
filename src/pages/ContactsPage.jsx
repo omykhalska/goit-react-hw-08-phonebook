@@ -1,5 +1,5 @@
 import { Toaster } from 'react-hot-toast';
-import { useGetContactsQuery } from 'redux/contactsSlice';
+import { useGetContactsQuery } from 'redux/contacts/contacts-slice';
 import PhonebookForm from 'components/PhonebookForm';
 import ContactsList from 'components/ContactsList';
 import Filter from 'components/Filter';

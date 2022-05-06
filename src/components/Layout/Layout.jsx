@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Navigation } from 'components/Navigation';
+import { AppBar } from 'components/AppBar';
 import { Header, Container, Main } from './Layout.styled';
 
 export const Layout = () => {
@@ -8,7 +8,7 @@ export const Layout = () => {
     <>
       <Header>
         <Container>
-          <Navigation />
+          <AppBar />
         </Container>
       </Header>
       <Main>

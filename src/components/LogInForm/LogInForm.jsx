@@ -4,55 +4,23 @@ import * as yup from 'yup';
 
 const schema = yup
   .object({
-    name: yup
-      .string()
-      .required('❌ The field cannot be empty!')
-      .matches(
-        /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
-        '❌ Name may contain only letters, apostrophe, dash and spaces'
-      )
-      .min(2),
     email: yup
       .string()
       .email('❌Email must be a valid email')
       .required('❌ The field cannot be empty!'),
-    password: yup
-      .string()
-      .required('❌ The field cannot be empty!')
-      .matches(
-        /^(?=.*[0-9])(?=.*[A-Z]).{6,32}$/,
-        '❌ The password must be at least 6 characters long with one digital and one uppercase'
-      ),
+    password: yup.string().required('❌ The field cannot be empty!'),
   })
   .required();
 
-export const AuthForm = ({ type }) => {
+export const LogInForm = ({ onSubmit }) => {
   const {
     register,
-    reset,
     formState: { errors },
     handleSubmit,
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onTouched',
   });
-
-  const onSubmit = data => {
-    console.log(data);
-    reset();
-  };
-
-  const NameInput = () => {
-    return (
-      <>
-        <label>
-          Name
-          <input type="text" placeholder="Name" {...register('name')} />
-        </label>
-        <p>{errors.name?.message}</p>
-      </>
-    );
-  };
 
   const EmailInput = () => {
     return (
@@ -89,13 +57,10 @@ export const AuthForm = ({ type }) => {
   };
 
   return (
-    <form name={type} onSubmit={handleSubmit(onSubmit)}>
-      {type === 'registerForm' ? <NameInput /> : null}
+    <form name="login-form" onSubmit={handleSubmit(onSubmit)}>
       <EmailInput />
       <PasswordInput />
-      <button type="submit">
-        {type === 'registerForm' ? 'Register' : 'Sign In'}
-      </button>
+      <button type="submit">Sign In</button>
     </form>
   );
 };
