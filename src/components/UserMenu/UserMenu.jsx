@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { authSelectors } from 'redux/auth';
 import { Flexbox } from './UserMenu.styled';
 
