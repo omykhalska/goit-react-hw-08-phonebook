@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 export const Flexbox = styled.nav`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 `;
 
 export const StyledNavLink = styled(NavLink)`

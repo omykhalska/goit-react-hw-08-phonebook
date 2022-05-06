@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
 
 const schema = yup
   .object({
@@ -12,15 +14,23 @@ const schema = yup
   })
   .required();
 
-export const LogInForm = ({ onSubmit }) => {
+export const LogInForm = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onTouched',
   });
+
+  const dispatch = useDispatch();
+
+  const onSubmit = data => {
+    dispatch(authOperations.logIn(data));
+    reset();
+  };
 
   const EmailInput = () => {
     return (

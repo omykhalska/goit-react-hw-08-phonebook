@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
 
 const NAME_PATTERN =
   '^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){1,18}[a-zA-Z0-9]$';
@@ -30,15 +32,23 @@ const schema = yup
   })
   .required();
 
-export const RegisterForm = ({ onSubmit }) => {
+export const RegisterForm = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onTouched',
   });
+
+  const dispatch = useDispatch();
+
+  const onSubmit = data => {
+    dispatch(authOperations.register(data));
+    reset();
+  };
 
   const NameInput = () => {
     return (
