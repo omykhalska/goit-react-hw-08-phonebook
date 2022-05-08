@@ -6,6 +6,10 @@ import { Flexbox } from './UserMenu.styled';
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const userEmail = useSelector(authSelectors.getUserEmail);
+  console.log(
+    '🚀 ~ file: UserMenu.jsx ~ line 9 ~ UserMenu ~ userEmail',
+    userEmail
+  );
 
   return (
     <Flexbox>

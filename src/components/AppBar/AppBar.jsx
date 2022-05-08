@@ -12,7 +12,7 @@ export const AppBar = () => {
   return (
     <Wrapper>
       <Navigation />
-      {isLoggedIn && !isRefreshing ? <UserMenu /> : <AuthNav />}
+      {isLoggedIn || !isRefreshing ? <UserMenu /> : <AuthNav />}
     </Wrapper>
   );
 };
