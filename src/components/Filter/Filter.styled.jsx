@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Label = styled.label`
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   padding-left: 12px;
 
   display: flex;

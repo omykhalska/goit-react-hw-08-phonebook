@@ -13,8 +13,12 @@ export const StyledNavLink = styled(NavLink)`
   text-transform: uppercase;
   color: white;
 
+  &:hover {
+    color: #ffba63;
+  }
+
   &.active {
     font-weight: 700;
-    color: tomato;
+    color: #ffba63;
   }
 `;

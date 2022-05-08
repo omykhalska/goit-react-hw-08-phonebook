@@ -1,15 +1,20 @@
-import { NavLink } from 'react-router-dom';
 import { RegisterForm } from 'components/RegisterForm';
+import HeadMessage from 'components/HeadMessage';
+import { authSelectors } from 'redux/auth';
+import { useSelector } from 'react-redux';
 
 export const RegisterPage = () => {
-  return (
+  const isError = useSelector(authSelectors.getIsError);
+
+  return isError ? (
     <>
-      <p>Don't have an account? Register one!</p>
+      <HeadMessage
+        text={'Something went wrong... Try again with another email!'}
+        color={'red'}
+      />
       <RegisterForm />
-      <div>
-        Already have an account?
-        <NavLink to="/login">Sign In</NavLink>
-      </div>
     </>
+  ) : (
+    <RegisterForm />
   );
 };

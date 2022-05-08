@@ -1,23 +1,21 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { authSelectors, authOperations } from 'redux/auth';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Flexbox } from './UserMenu.styled';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import { Flexbox, Button } from './UserMenu.styled';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const userEmail = useSelector(authSelectors.getUserEmail);
-  console.log(
-    '🚀 ~ file: UserMenu.jsx ~ line 9 ~ UserMenu ~ userEmail',
-    userEmail
-  );
 
   return (
     <Flexbox>
       <AccountCircleIcon style={{ fontSize: '40px' }} />
       <p>{userEmail}</p>
-      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
+      <Button type="button" onClick={() => dispatch(authOperations.logOut())}>
+        <LogoutRoundedIcon style={{ fontSize: '24px', color: 'inherit' }} />{' '}
         Logout
-      </button>
+      </Button>
     </Flexbox>
   );
 };

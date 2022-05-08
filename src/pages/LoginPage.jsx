@@ -1,18 +1,20 @@
+import { authSelectors } from 'redux/auth';
+import { useSelector } from 'react-redux';
 import { LogInForm } from 'components/LogInForm';
-import { NavLink } from 'react-router-dom';
+import HeadMessage from 'components/HeadMessage';
 
 export const LoginPage = () => {
+  const isError = useSelector(authSelectors.getIsError);
+
   return (
     <>
-      <p>
-        Accessing this application requires a login, please enter your
-        credentials below!
-      </p>
+      {isError && (
+        <HeadMessage
+          text={'Something went wrong... Try again!'}
+          color={'red'}
+        />
+      )}
       <LogInForm />
-      <div>
-        No account?
-        <NavLink to="/register">Create one!</NavLink>
-      </div>
     </>
   );
 };

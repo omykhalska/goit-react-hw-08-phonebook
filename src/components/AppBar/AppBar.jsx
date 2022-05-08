@@ -7,7 +7,6 @@ import { Wrapper } from './AppBar.styled';
 
 export const AppBar = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  // const isRefreshing = useSelector(authSelectors.getIsRefreshing);
 
   return (
     <Wrapper>

@@ -1,13 +1,20 @@
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import {
   useAddContactMutation,
   useGetContactsQuery,
 } from 'redux/contacts/contacts-slice';
-import Button from '../Button';
-import { FormWrapper, Label, Input, ErrorText } from './PhonebookForm.styled';
+import {
+  FormWrapper,
+  Form,
+  Label,
+  Input,
+  ErrorText,
+  SubmitBtn,
+} from './PhonebookForm.styled';
 
-function PhonebookForm() {
+function PhonebookForm({ closeModal }) {
   const [addItem] = useAddContactMutation();
   const { data: contacts } = useGetContactsQuery();
 
@@ -21,15 +28,18 @@ function PhonebookForm() {
   });
 
   const onSubmit = ({ name, number }) => {
-    contacts.some(contact => contact.name === name)
-      ? toast.error(`${name} is already in contacts`)
-      : addItem({ name, number });
+    if (contacts.some(contact => contact.name === name)) {
+      toast.error(`${name} is already in contacts`);
+    } else {
+      addItem({ name, number });
+      closeModal();
+    }
     reset();
   };
 
   return (
-    <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-      <FormWrapper>
+    <FormWrapper>
+      <Form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <Label>
           Name
           <Input
@@ -56,7 +66,6 @@ function PhonebookForm() {
             </ErrorText>
           )}
         </div>
-
         <Label>
           Phone number
           <Input
@@ -82,10 +91,16 @@ function PhonebookForm() {
             </ErrorText>
           )}
         </div>
-        <Button label="Add contact" type="submit" disabled={!isValid} />
-      </FormWrapper>
-    </form>
+        <SubmitBtn type="submit" disabled={!isValid}>
+          Add contact
+        </SubmitBtn>
+      </Form>
+    </FormWrapper>
   );
 }
+
+PhonebookForm.propTypes = {
+  closeModal: PropTypes.func,
+};
 
 export default PhonebookForm;

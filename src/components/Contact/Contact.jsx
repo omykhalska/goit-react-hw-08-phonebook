@@ -1,11 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
 import { useDeleteContactMutation } from 'redux/contacts/contacts-slice';
-import Button from '../Button';
 import Avatar from '@mui/material/Avatar';
 import { stringAvatar } from 'utils/stringAvatar';
 import { ContactItem, ContactText, ContactAvatarBox } from './Contact.styled';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Contact({ name, number, id }) {
   const [deleteItem, { isLoading }] = useDeleteContactMutation();
@@ -15,12 +15,12 @@ function Contact({ name, number, id }) {
     toast.success('Selected contact deleted');
   };
 
-  const verifyName = name => {
+  function verifyName(name) {
     if (name.split(' ').length < 2) {
       return `${name} ${name.split('').slice(1, 2).join()}`;
     }
     return name;
-  };
+  }
 
   let verifiedName = verifyName(name);
 
@@ -32,12 +32,17 @@ function Contact({ name, number, id }) {
           <b>{name}:</b> {number}
         </ContactText>
       </ContactAvatarBox>
+
       <Button
-        label={isLoading ? 'Deleting...' : 'Delete'}
-        type="submit"
+        variant="contained"
+        startIcon={<DeleteIcon />}
+        sx={{ bgcolor: '#2878ad' }}
         onClick={deleteContact}
         disabled={isLoading}
-      />
+        type="submit"
+      >
+        {isLoading ? 'Deleting...' : 'Delete'}
+      </Button>
     </ContactItem>
   );
 }

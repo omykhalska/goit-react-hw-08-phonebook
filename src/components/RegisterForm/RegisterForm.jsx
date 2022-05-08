@@ -3,9 +3,19 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
+import { NavLink } from 'react-router-dom';
+import {
+  Wrapper,
+  Form,
+  Text,
+  Label,
+  Input,
+  SubmitBtn,
+  Flexbox,
+  ErrorMessage,
+} from './RegisterForm.styled';
 
-const NAME_PATTERN =
-  '^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){1,18}[a-zA-Z0-9]$';
+const NAME_PATTERN = `^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$`;
 const PASSWORD_PATTERN = '^(?=.*[0-9])(?=.*[A-Z]).{7,32}$';
 
 const schema = yup
@@ -33,6 +43,8 @@ const schema = yup
   .required();
 
 export const RegisterForm = () => {
+  const dispatch = useDispatch();
+
   const {
     register,
     formState: { errors },
@@ -43,8 +55,6 @@ export const RegisterForm = () => {
     mode: 'onTouched',
   });
 
-  const dispatch = useDispatch();
-
   const onSubmit = data => {
     dispatch(authOperations.register(data));
     reset();
@@ -53,11 +63,11 @@ export const RegisterForm = () => {
   const NameInput = () => {
     return (
       <>
-        <label>
+        <Label>
           Name
-          <input type="text" placeholder="Name" {...register('name')} />
-        </label>
-        <p>{errors.name?.message}</p>
+          <Input type="text" placeholder="Name" {...register('name')} />
+        </Label>
+        <ErrorMessage>{errors.name?.message}</ErrorMessage>
       </>
     );
   };
@@ -65,16 +75,16 @@ export const RegisterForm = () => {
   const EmailInput = () => {
     return (
       <>
-        <label>
+        <Label>
           Email
-          <input
+          <Input
             type="email"
             name="email"
             placeholder="Email"
             {...register('email')}
           />
-        </label>
-        <p>{errors.email?.message}</p>
+        </Label>
+        <ErrorMessage>{errors.email?.message}</ErrorMessage>
       </>
     );
   };
@@ -82,26 +92,33 @@ export const RegisterForm = () => {
   const PasswordInput = () => {
     return (
       <>
-        <label>
+        <Label>
           Password
-          <input
+          <Input
             type="password"
             name="password"
             placeholder="Enter password"
             {...register('password')}
           />
-        </label>
-        <p>{errors.password?.message}</p>
+        </Label>
+        <ErrorMessage>{errors.password?.message}</ErrorMessage>
       </>
     );
   };
 
   return (
-    <form name="register-form" onSubmit={handleSubmit(onSubmit)}>
-      <NameInput />
-      <EmailInput />
-      <PasswordInput />
-      <button type="submit">Register</button>
-    </form>
+    <Wrapper>
+      <Text>Don't have an account? Register one!</Text>
+      <Form name="register-form" onSubmit={handleSubmit(onSubmit)}>
+        <NameInput />
+        <EmailInput />
+        <PasswordInput />
+        <SubmitBtn type="submit">Register</SubmitBtn>
+      </Form>
+      <Flexbox>
+        Already have an account?
+        <NavLink to="/login">Sign In</NavLink>
+      </Flexbox>
+    </Wrapper>
   );
 };

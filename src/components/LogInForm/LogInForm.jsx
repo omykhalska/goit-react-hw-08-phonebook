@@ -3,6 +3,17 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
+import { NavLink } from 'react-router-dom';
+import {
+  Wrapper,
+  Form,
+  Text,
+  Label,
+  Input,
+  SubmitBtn,
+  Flexbox,
+  ErrorMessage,
+} from './LogInForm.styled';
 
 const schema = yup
   .object({
@@ -35,17 +46,17 @@ export const LogInForm = () => {
   const EmailInput = () => {
     return (
       <>
-        <label>
+        <Label>
           Email
-          <input
+          <Input
             type="email"
             name="email"
             placeholder="Email"
             required
             {...register('email')}
           />
-        </label>
-        <p>{errors.email?.message}</p>
+        </Label>
+        <ErrorMessage>{errors.email?.message}</ErrorMessage>
       </>
     );
   };
@@ -53,26 +64,36 @@ export const LogInForm = () => {
   const PasswordInput = () => {
     return (
       <>
-        <label>
+        <Label>
           Password
-          <input
+          <Input
             type="password"
             name="password"
             placeholder="Enter password"
             required
             {...register('password')}
           />
-        </label>
-        <p>{errors.password?.message}</p>
+        </Label>
+        <ErrorMessage>{errors.password?.message}</ErrorMessage>
       </>
     );
   };
 
   return (
-    <form name="login-form" onSubmit={handleSubmit(onSubmit)}>
-      <EmailInput />
-      <PasswordInput />
-      <button type="submit">Sign In</button>
-    </form>
+    <Wrapper>
+      <Text>
+        Accessing this application requires a login, please enter your
+        credentials below!
+      </Text>
+      <Form name="login-form" onSubmit={handleSubmit(onSubmit)}>
+        <EmailInput />
+        <PasswordInput />
+        <SubmitBtn type="submit">Sign In</SubmitBtn>
+      </Form>
+      <Flexbox>
+        No account?
+        <NavLink to="/register">Create one!</NavLink>
+      </Flexbox>
+    </Wrapper>
   );
 };

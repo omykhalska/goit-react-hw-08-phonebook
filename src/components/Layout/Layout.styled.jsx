@@ -15,12 +15,13 @@ export const Header = styled.header`
 export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
-  padding: 24px 16px;
+  padding: 24px 24px;
   width: 1200px;
 `;
 
 export const Main = styled.main`
+  display: flex;
   padding-top: 80px;
-  min-height: calc(100vh - 76px);
+  min-height: 100vh;
   background-color: aliceblue;
 `;

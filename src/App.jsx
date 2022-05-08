@@ -1,11 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router';
 import { authOperations, authSelectors } from 'redux/auth';
 import { Layout } from './components/Layout';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { PublicRoute } from 'components/PublicRoute';
-import { HomePage, LoginPage, RegisterPage, ContactsPage } from './pages';
+
+const makeChunk = componentName => {
+  return lazy(() =>
+    import(`./pages/${componentName}`).then(module => ({
+      default: module[componentName],
+    }))
+  );
+};
+
+const HomePage = makeChunk('HomePage');
+const LoginPage = makeChunk('LoginPage');
+const RegisterPage = makeChunk('RegisterPage');
+const ContactsPage = makeChunk('ContactsPage');
 
 export const App = () => {
   const dispatch = useDispatch();

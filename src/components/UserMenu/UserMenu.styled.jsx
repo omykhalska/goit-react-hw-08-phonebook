@@ -15,6 +15,19 @@ export const StyledNavLink = styled(NavLink)`
 
   &.active {
     font-weight: 700;
-    color: tomato;
+    color: #ffba63;
+  }
+`;
+
+export const Button = styled.button`
+  display: flex;
+  gap: 4px;
+  border: none;
+  color: white;
+  background-color: #2878ad;
+
+  &:hover,
+  &:focus {
+    color: #ffba63;
   }
 `;
