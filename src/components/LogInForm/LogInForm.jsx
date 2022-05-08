@@ -41,6 +41,7 @@ export const LogInForm = () => {
             type="email"
             name="email"
             placeholder="Email"
+            required
             {...register('email')}
           />
         </label>
@@ -58,6 +59,7 @@ export const LogInForm = () => {
             type="password"
             name="password"
             placeholder="Enter password"
+            required
             {...register('password')}
           />
         </label>

@@ -1,4 +1,5 @@
 import { LogInForm } from 'components/LogInForm';
+import { NavLink } from 'react-router-dom';
 
 export const LoginPage = () => {
   return (
@@ -8,6 +9,10 @@ export const LoginPage = () => {
         credentials below!
       </p>
       <LogInForm />
+      <div>
+        No account?
+        <NavLink to="/register">Create one!</NavLink>
+      </div>
     </>
   );
 };

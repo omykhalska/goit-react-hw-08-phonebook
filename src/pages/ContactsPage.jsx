@@ -6,7 +6,9 @@ import Filter from 'components/Filter';
 import Loader from 'components/Loader';
 
 export const ContactsPage = () => {
-  const { data, error, isFetching } = useGetContactsQuery();
+  const { data, error, isFetching } = useGetContactsQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const showContactsSection = contacts => (
     <>

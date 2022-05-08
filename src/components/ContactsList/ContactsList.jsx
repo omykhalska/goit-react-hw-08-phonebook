@@ -16,8 +16,8 @@ function ContactsList({ contacts }) {
     <ContactList>
       {filteredContacts
         .sort((a, b) => a.name.localeCompare(b.name))
-        .map(({ id, name, phone }) => (
-          <Contact key={id} name={name} number={phone} id={id} />
+        .map(({ id, name, number }) => (
+          <Contact key={id} name={name} number={number} id={id} />
         ))}
     </ContactList>
   );

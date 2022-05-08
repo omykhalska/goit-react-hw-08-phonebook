@@ -20,10 +20,10 @@ function PhonebookForm() {
     mode: 'onChange',
   });
 
-  const onSubmit = ({ name, phone }) => {
+  const onSubmit = ({ name, number }) => {
     contacts.some(contact => contact.name === name)
       ? toast.error(`${name} is already in contacts`)
-      : addItem({ name, phone });
+      : addItem({ name, number });
     reset();
   };
 
@@ -61,7 +61,7 @@ function PhonebookForm() {
           Phone number
           <Input
             type="tel"
-            {...register('phone', {
+            {...register('number', {
               required: '❌ The field cannot be empty!',
               pattern: {
                 value: /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]*$/g,
@@ -76,9 +76,9 @@ function PhonebookForm() {
           />
         </Label>
         <div>
-          {errors?.phone && (
+          {errors?.number && (
             <ErrorText>
-              {errors?.phone.message || 'An error has occurred...'}
+              {errors?.number.message || 'An error has occurred...'}
             </ErrorText>
           )}
         </div>
