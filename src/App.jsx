@@ -43,7 +43,7 @@ export const App = () => {
           <Route
             path="register"
             element={
-              <PublicRoute restricted>
+              <PublicRoute restricted redirectTo="/contacts">
                 <RegisterPage />
               </PublicRoute>
             }

@@ -14,7 +14,7 @@ import {
   SubmitBtn,
 } from './PhonebookForm.styled';
 
-function PhonebookForm({ closeModal }) {
+function PhonebookForm({ closeModal, isOpenModal }) {
   const [addItem] = useAddContactMutation();
   const { data: contacts } = useGetContactsQuery();
 
@@ -32,7 +32,7 @@ function PhonebookForm({ closeModal }) {
       toast.error(`${name} is already in contacts`);
     } else {
       addItem({ name, number });
-      closeModal();
+      isOpenModal && closeModal();
     }
     reset();
   };
@@ -101,6 +101,7 @@ function PhonebookForm({ closeModal }) {
 
 PhonebookForm.propTypes = {
   closeModal: PropTypes.func,
+  isOpenModal: PropTypes.bool,
 };
 
 export default PhonebookForm;

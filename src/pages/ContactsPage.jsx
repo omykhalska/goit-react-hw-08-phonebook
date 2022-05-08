@@ -51,7 +51,7 @@ export const ContactsPage = () => {
             aria-describedby="contact updating"
           >
             <Box sx={modalStyle}>
-              <PhonebookForm closeModal={handleClose} />
+              <PhonebookForm closeModal={handleClose} isOpenModal={open} />
             </Box>
           </Modal>
           {contacts.length > 1 ? <Filter /> : null}
