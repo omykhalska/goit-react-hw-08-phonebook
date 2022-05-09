@@ -4,6 +4,8 @@ import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import { NavLink } from 'react-router-dom';
+import { unwrapResult } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 import {
   Wrapper,
   Form,
@@ -56,7 +58,11 @@ export const RegisterForm = () => {
   });
 
   const onSubmit = data => {
-    dispatch(authOperations.register(data));
+    dispatch(authOperations.register(data))
+      .then(unwrapResult)
+      .catch(() => {
+        toast.error('Registration failed. Try with another email !');
+      });
     reset();
   };
 

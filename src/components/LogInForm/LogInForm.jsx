@@ -14,6 +14,8 @@ import {
   Flexbox,
   ErrorMessage,
 } from './LogInForm.styled';
+import { unwrapResult } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 
 const schema = yup
   .object({
@@ -39,7 +41,11 @@ export const LogInForm = () => {
   const dispatch = useDispatch();
 
   const onSubmit = data => {
-    dispatch(authOperations.logIn(data));
+    dispatch(authOperations.logIn(data))
+      .then(unwrapResult)
+      .catch(() => {
+        toast.error('Try again with correct credentials !');
+      });
     reset();
   };
 
