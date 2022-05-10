@@ -1,17 +1,21 @@
 import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { changeFilter } from 'redux/contacts/filter-slice';
 import { useDeleteContactMutation } from 'redux/contacts/contacts-slice';
 import Avatar from '@mui/material/Avatar';
-import { stringAvatar } from 'utils/stringAvatar';
-import { ContactItem, ContactText, ContactAvatarBox } from './Contact.styled';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { stringAvatar } from 'utils/stringAvatar';
+import { ContactItem, ContactText, ContactAvatarBox } from './Contact.styled';
 
 function Contact({ name, number, id }) {
   const [deleteItem, { isLoading }] = useDeleteContactMutation();
+  const dispatch = useDispatch();
 
   const deleteContact = () => {
     deleteItem(id);
+    dispatch(changeFilter(''));
     toast.success('Selected contact deleted');
   };
 
